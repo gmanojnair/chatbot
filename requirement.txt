@@ -14,3 +14,5 @@ sentence_transformers
 chromadb-client
 fastapi 
 urlparse
+flake8==3.9.0
+pytest==6.2.2
