@@ -7,19 +7,20 @@
 # ENTRYPOINT ["streamlit", "run"]
 # CMD ["main.py"]
 
-FROM python:3.11.6
 
+FROM python:3.11-slim-buster
+
+LABEL Name="Python Demo App" Version=1.0.0
+
+ARG srcDir=src
+WORKDIR /app
+COPY $srcDir/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY $srcDir/run.py .
+COPY $srcDir/app ./app
 # Expose port you want your app on
 EXPOSE 8080
-
-# Upgrade pip and install requirements
-COPY requirement.txt requirement.txt
-RUN pip install -U pip
-RUN pip install -r requirement.txt
-
-# Copy app code and set working directory
-COPY . .
-WORKDIR /app
 
 # Run
 ENTRYPOINT [“streamlit”, “run”, testchat2.py”, “–server.port=8080”, “–server.address=0.0.0.0”]
