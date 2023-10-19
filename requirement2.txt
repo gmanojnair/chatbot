@@ -16,3 +16,5 @@ faiss-cpu
 lxml
 fake-useragent
 nest_asyncio
+azure-search-documents==11.4.0b8
+azure-identity
