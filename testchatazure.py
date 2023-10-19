@@ -54,6 +54,12 @@ def main():
         chunks = text_splitter.split_text(text=text)
         # Show how many chunks of text are generated.
         len(chunks)
+
+        # chunks = text_splitter.split_text(text=text)
+        # todo = {"text": chunks, "index_name": store_name, "tag": store_name}
+        # headers = {'Content-type': 'application/json'}
+        # response = requests.post("http://127.0.0.1:8000/index/", json=todo, headers=headers)
+        # print(response)
  
         # # embeddings
         store_name = pdf.name[:-4]
