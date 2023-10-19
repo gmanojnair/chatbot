@@ -15,6 +15,9 @@ from azure.search.documents.indexes import SearchIndexClient
 from azure.search.documents import SearchClient
 from azure.core.credentials import AzureKeyCredential
 from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain import HuggingFaceHub
+from langchain import PromptTemplate, LLMChain
+from langchain.chains.question_answering import load_qa_chain
 import os
 
 
