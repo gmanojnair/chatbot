@@ -69,6 +69,7 @@ def create_index(index: Index):
     vector_store.add_texts(index.text)
     return index
 
+
 @app.get("/index/")
 async def read_index(indexname: str,query: str):
     
@@ -84,12 +85,12 @@ async def read_index(indexname: str,query: str):
     index_name=indexname,
     embedding_function=embeddings.embed_query,
     )   
-
-    return vector_store.similarity_search(
-    query=query,
-    k=3,
-    search_type="similarity",
-)
+    docs = vector_store.similarity_search(query=query, k=3)
+    llm=HuggingFaceHub(repo_id="google/flan-t5-xxl", model_kwargs={"temperature":1, "max_length":512})
+    chain = load_qa_chain(llm, chain_type="stuff")
+    response = chain.run(input_documents=docs, question=query) 
+    return response,docs
+    
 
 @app.get("/")
 async def root():
